@@ -15,7 +15,7 @@ const users = [
 
 const polls = [
   {
-    question: 'Which is the best JavaScript framework',
+    question: 'Which is the best JavaScript library or  framework?',
     options: ['Angular', 'React', 'VueJS'],
   },
   { question: 'Who is the best mutant', options: ['Wolverine', 'Deadpool'] },
