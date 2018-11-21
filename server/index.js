@@ -16,7 +16,7 @@ const port = process.env.PORT;
 app.use(cors());
 app.use(bodyParser.json());
 
-app.get('/', (req, res) => res.json({hello: 'PRAVEEN'}));
+app.get('/', (req, res) => res.json({hello: '123PRAVEEN'}));
 app.use('/api/auth', routes.auth);
 app.use('/api/polls', routes.poll);
 

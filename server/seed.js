@@ -5,17 +5,16 @@ mongoose.set('debug', true);
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.DATABASE);
 
-
 const db = require('./models');
 
 const users = [
   { username: 'username', password: 'password' },
-  { username: 'praveen', password: 'password' }
+  { username: 'praveen', password: 'password' },
 ];
 
 const polls = [
   {
-    question: 'Which is the best JavaScript library or  framework?',
+    question: 'Which is the best JavaScript library or framework',
     options: ['Angular', 'React', 'VueJS'],
   },
   { question: 'Who is the best mutant', options: ['Wolverine', 'Deadpool'] },
