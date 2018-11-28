@@ -13,7 +13,9 @@ const Poll = ({ poll, vote }) => {
     poll.options &&
     poll.options.map(option => (
       <button onClick={() => vote(poll._id, { answer: option.option })} 
-      key={option._id}>{option.option}
+      key={option._id}
+      >
+        {option.option}
       </button>
     ));
 

@@ -8,16 +8,21 @@ class Polls extends Component {
     super(props); 
     this.handleSelect = this.handleSelect.bind(this);
     }
-    componentDidMount() {
-  const { getPolls } = this.props;
+  componentDidMount() {
+    const { getPolls } = this.props;
     getPolls();
-      }
+    }
+    
     handleSelect(id) {
-  const { history } = this.props;
-      history.push(`/poll/${id}`);
-        }
+    const { history } = this.props;
+    history.push(`/poll/${id}`);
+    }
+
+    // const { getCurrentPoll } = this.props;
+    // getCurrentPoll(id);
+    // }
     render() {
-      const { auth, getPolls, getUserPolls } =this.props;
+      const { auth, getPolls, getUserPolls } = this.props;
 
       const polls = this.props.polls.map(poll => (
       <li onClick={() => this.handleSelect(poll._id)} key={poll._id}>
@@ -46,3 +51,6 @@ export default connect(
   }),
   { getPolls, getUserPolls, getCurrentPoll },
   )(Polls);
+
+
+  

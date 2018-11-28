@@ -1,15 +1,15 @@
 import api from '../../services/api';
-import {SET_POLLS, SET_CURRENT_POLL} from '../actionTypes';
+import { SET_POLLS, SET_CURRENT_POLL } from '../actionTypes';
 import { addError, removeError } from './error';
 
 export const setPolls = polls => ({
   type: SET_POLLS,
-  polls
+  polls,
 });
 
 export const setCurrentPoll = poll => ({
   type: SET_CURRENT_POLL,
-  poll
+  poll,
 });
 
 export const getPolls = () => {
@@ -18,12 +18,12 @@ export const getPolls = () => {
       const polls = await api.call('get', 'polls');
       dispatch(setPolls(polls));
       dispatch(removeError());
-      }catch (err) {
+    } catch (err) {
       const error = err.response.data;
       dispatch(addError(error.message));
     }
+    };
   };
-};
 
 export const getUserPolls = () => {
   return async dispatch => {
@@ -43,9 +43,8 @@ export const createPoll = data => {
     try {
       const poll = await api.call('post', 'polls', data);
       dispatch(setCurrentPoll(poll));
-      dispatch (removeError());
-
-    }catch (err) {
+      dispatch(removeError());
+    } catch (err) {
       const error = err.response.data;
       dispatch(addError(error.message));
     }
