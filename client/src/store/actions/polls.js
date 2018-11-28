@@ -64,13 +64,13 @@ export const getCurrentPoll = path => {
     }
   };
 };
-export const vote =(path, data) =>{
+export const vote =(path, data) => {
   return async dispatch => {
     try {
       const poll = await api.call('post', `polls/${path}`, data);
       dispatch(setCurrentPoll(poll));
       dispatch(removeError());
-    }catch (err) {
+      }catch (err) {
       const error = err.response.data;
       dispatch(addError(error.message));
     }

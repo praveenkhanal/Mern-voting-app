@@ -1,9 +1,14 @@
 import React from 'react';
-import Polls from '../components/Polls';
+import Poll from '../components/Poll';
+import ErrorMessage from '../components/ErrorMessage';
 
 const TestPage = () => (
-<Polls />
-)
+  <div>
+   <ErrorMessage />
+   <Poll />
+  </div>
+);
+
 
 
 export default TestPage;
