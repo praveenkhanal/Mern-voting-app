@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 
 import { createPoll } from '../store/actions';
+// import {deleteCurrentPoll} from '../store/actions/polls'
 
 class CreatePoll extends Component {
   constructor(props){
@@ -15,6 +16,7 @@ class CreatePoll extends Component {
     this.addAnswer = this.addAnswer.bind(this);
     this.handleAnswer = this.handleAnswer.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    // this.deleteCurrentPoll = this.deleteCurrentPoll.bind(this);
   }
 
   handleChange(e){
@@ -28,6 +30,10 @@ class CreatePoll extends Component {
     options[index] = e.target.value;
     this.setState({ options });
   }
+
+  // deleteCurrentPoll(e){
+  //   this.setState({[e.target.name]: e.target.value});
+  // }
 
   handleSubmit(e) {
     e.preventDefault();

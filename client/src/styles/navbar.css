@@ -1,6 +1,7 @@
 .navbar {
 background-color: aquamarine;
-padding: 1rem o;
+padding: 1.5rem 1rem;
+
 }
 .navbar-brand {
   background-color: var(--light);
@@ -11,6 +12,9 @@ padding: 1rem o;
   text-transform: uppercase;
   font-weight: bold;
 }
+.navbar-brand:hover{
+  color: #f85b00;
+}
 .navbar-container {
   display: flex;
   flex-direction: row;
@@ -20,6 +24,11 @@ padding: 1rem o;
   color:purple;
   text-decoration: none;
   cursor: pointer;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.navbar-item:hover{
+  color: #f85b00;
 }
 .navbar-user {
   margin-top: 0.5rem;

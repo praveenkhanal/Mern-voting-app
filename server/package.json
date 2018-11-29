@@ -4,8 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon",
-    "seed": "node seed.js"
+    "start": "node index.js",
+    "seed": "node seed.js",
+    "heroku-postbuild": "cd ../client && npm install --only=dev && npm install && npm run build"
+  },
+  "engines": {
+    "node": "10.13.0"
   },
   "author": "Praveen Khanal",
   "license": "ISC",
