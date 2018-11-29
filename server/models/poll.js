@@ -23,4 +23,18 @@ const pollSchema = new mongoose.Schema({
 
 });
 
+
+//  pollSchema.pre('remove', async function(next) {
+//   try {
+//     const user = await User.findById(this.user);
+//     user.polls = user.polls.filter(
+//       poll => poll._id.toString() !== this._id.toString(),
+//     );
+//     await user.save();
+//     return next();
+//   } catch (err) {
+//     return next(err);
+//   }
+// });
+
 module.exports = mongoose.model('Poll', pollSchema);
