@@ -22,8 +22,6 @@ const RouteViews = ({ auth, getCurrentPoll }) => (
       <PollPage getPoll={id => getCurrentPoll(id)} {...props} /> )} />
     <Route exact path="/test" render={() => <TestPage />} />
   </Switch>
-
-
 </main>
 
 );

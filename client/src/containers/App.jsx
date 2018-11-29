@@ -3,7 +3,6 @@ import { Provider } from 'react-redux';
 import  { BrowserRouter as Router } from 'react-router-dom';
 
 import decode from 'jwt-decode';
-//import api, {setToken} from '../services/api';
 import { store } from '../store';
 import {setCurrentUser, addError, setToken} from '../store/actions';
 

@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 
-import { getPolls, getUserPolls, getCurrentPoll } from '../store/actions';
+import { getPolls, getUserPolls } from '../store/actions';
 
 class Polls extends Component {
   constructor(props) { 
@@ -44,8 +44,8 @@ export default connect(
   store => ({
     auth: store.auth,
     polls: store.polls,
-  }),
-  { getPolls, getUserPolls, getCurrentPoll },
+    }),
+    { getPolls, getUserPolls },
   )(Polls);
 
 

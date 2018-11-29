@@ -6,7 +6,6 @@ export const polls = (state = [], action) => {
     return action.polls;
   default:
     return state;
-  
   }
 };
 
@@ -17,5 +16,4 @@ export const currentPoll = (state = {}, action) => {
   default:
     return state;
   }
-
-}
+};
