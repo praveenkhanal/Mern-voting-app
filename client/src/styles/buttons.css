@@ -1,0 +1,18 @@
+.button {
+  background-color: rgb(29, 141, 149);
+  border: 2px solid var(--blue);
+  border-radius: 0.5rem;
+  color:black;
+  font-size: 1rem;
+  margin: 1rem;
+  padding: 0.2rem 1rem;
+  transition: all 0.4s ease-out;
+}
+
+.button:hover {
+  background-color:yellow;
+}
+.button_center {
+  display: flex;
+  justify-content: center;
+}

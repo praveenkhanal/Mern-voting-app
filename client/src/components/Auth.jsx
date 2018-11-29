@@ -15,7 +15,6 @@ class Auth extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
 
   }
-
    handleChange(e) {
      this.setState({[e.target.name]: e.target.value });
    }
@@ -30,9 +29,9 @@ class Auth extends Component {
     render() {
     const {username, password} = this.state;
     return <div>
-    <form onSubmit={this.handleSubmit}>
-    <label htmlFor="username">username</label>
-    <input 
+    <form className='form' onSubmit={this.handleSubmit}>
+    <label className='form-label' htmlFor="username">username</label>
+    <input className='form-input' 
     type="text" 
     value={username} 
     name="username" 
@@ -40,16 +39,18 @@ class Auth extends Component {
     onChange= {this.handleChange}
      />
 
-    <label htmlFor="password">password</label>
-    <input 
+    <label className='form-label' htmlFor="password">password</label>
+    <input className='form-input' 
     type="password" 
     value={password} 
     name="password" 
     autoComplete='off'
     onChange= {this.handleChange} 
     />
+    <div className='button_center'>
 
-    <button type="submit">Submit</button>
+    <button className='button' type="submit">Submit</button>
+    </div>
 
 
     </form>

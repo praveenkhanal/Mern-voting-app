@@ -8,7 +8,7 @@ export const setToken = token => {
   } else {
     delete axios.defaults.headers.common['Authorization'];
   }
-  };
+};
 
 
 export const call = async (method, path, data) => {
@@ -18,4 +18,4 @@ export const call = async (method, path, data) => {
 
 
 
-export default { call, setToken };
+export default { setToken, call };
