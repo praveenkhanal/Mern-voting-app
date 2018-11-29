@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema({
 userSchema.pre('save', async function(next){
   try{
     if(!this.isModified('password')){
-      return next();
+    return next();
     }
     const hashed = await bcrypt.hash(this.password, 10);
     this.password = hashed;
@@ -31,9 +31,9 @@ userSchema.pre('save', async function(next){
 });
 userSchema.methods.comparePassword = async function(attempt, next){
   try{
-    return await bcrypt.compare(attempt, this.password);
+  return await bcrypt.compare(attempt, this.password);
   }catch(err){
-    next(err);
+  next(err);
   }
 }
 module.exports = mongoose.model('User', userSchema);
