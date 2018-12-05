@@ -3,9 +3,6 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { createPoll, getPolls } from '../store/actions';
-// import {deleteCurrentPoll} from '../store/reducers/polls'
-// import {deletePoll} from '../store/actions/polls'
-
 
 class CreatePoll extends Component {
   constructor(props){
@@ -19,7 +16,7 @@ class CreatePoll extends Component {
     this.addAnswer = this.addAnswer.bind(this);
     this.handleAnswer = this.handleAnswer.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    // this.handleDelete = this.handleDelete.bind(this);
+  
   }
 
   handleChange(e){
@@ -33,11 +30,6 @@ class CreatePoll extends Component {
     options[index] = e.target.value;
     this.setState({ options });
   }
-
-  // handleDelete(e){
-  //   this.setState({[e.target.name]: e.target.value});
-  // }
-
   handleSubmit(e) {
     e.preventDefault();
     this.props.createPoll(this.state);
@@ -64,7 +56,6 @@ class CreatePoll extends Component {
     </form>
     );
   }
-
 } 
 
 export default withRouter(connect(() => ({}), { createPoll, getPolls })(CreatePoll));

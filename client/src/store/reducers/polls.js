@@ -7,12 +7,6 @@ export const polls = (state = [], action) => {
         ...action.polls
       ];
       return updatedState;
-    // case SET_CURRENT_POLL:
-      // const updatedPolls = {
-      //   // ...state,
-      //   ...action.poll
-      // };
-      // return action.polls;
     case SET_DELETE_POLL:
       const filteredState = state.filter((poll) =>poll._id !== action.pollId);
       return filteredState;

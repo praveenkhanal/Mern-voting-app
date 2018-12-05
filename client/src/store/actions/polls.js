@@ -16,14 +16,6 @@ export const deletePolls = pollId => ({
   type: SET_DELETE_POLL,
   pollId,
 });
-
-//.........below code is more effective.......
-// export const deletePoll= (id) => {
-//   return {
-//       type: actionTypes.REMOVE_POLL,
-//       id: id
-//   }
-// }
 export const getPolls = () => {
   return async dispatch => {
     try {
