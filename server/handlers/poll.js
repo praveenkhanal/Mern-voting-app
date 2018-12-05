@@ -4,7 +4,6 @@ exports.showPolls = async(req, res, next) => {
   try{
     const polls = await db.Poll.find()
     .populate('user', ['username', 'id']);
-    
     res.status(200).json(polls);
   } catch (err) {
     err.status = 400;
@@ -15,10 +14,8 @@ exports.showPolls = async(req, res, next) => {
 exports.usersPolls = async(req, res, next) => {
   try {
     const {id} = req.decoded;
-
     const user = await db.User.findById(id)
     .populate('polls');
-
     res.status(200).json(user.polls);
   } catch (err) {
     err.status = 400;
@@ -59,62 +56,41 @@ exports.getPoll = async (req, res, next) => {
     err.status = 400;
   next(err);
 }
-  
 };
-
 exports.deletePoll = async (req, res, next) => {
   try{
     const {id: pollId} = req.params;
     const {id: userId} = req.decoded;
-    let user = await db.User.findById(userId)
-    if(user.polls) { // not sure if necessary either...
-      user.polls = user.polls.filter(userPoll => {
-        return userPoll._id.toString() !== pollId.toString() // not sure if necessary to use toString()
-      })
+    
+    const poll = await db.Poll.findById(pollId);
+    if(!poll) throw new Error('No Poll Found');
+    if (poll.user.toString() !== userId) {
+      throw new Error('Unathorized acces');
     }
-
-    const poll  = await db.Poll.findById(pollId);
-    if (!poll) throw new Error('No poll found');
-    if(poll.user.toString() !== userId){
-      throw new Error('Unauthorized access');
-    }
-    await user.save()
     await poll.remove();
     res.status(202).json(poll);
+    } catch (err) {
+      err.status = 400;
+      next(err);
+    }
+  };
+  //   let user = await db.User.findById(userId)
+  //   if(user.polls) 
+  //     user.polls = user.polls.filter(userPoll => {
+  //       return userPoll._id.toString() !== pollId.toString() 
+  //     });
+  //   const poll  = await db.Poll.findById(pollId);
+  //   if (!poll) throw new Error('No poll found');
+  //   if(poll.user.toString() !== userId){
+  //     throw new Error('Unauthorized access');
+  //   }
+  //   await user.save()
+  //   await poll.remove();
+  //   res.status(202).json({poll, deleted: true });
+  // } catch (err) {
+  //   err.status = 400;
+  //   next(err);
 
-  } catch (err) {
-    err.status = 400;
-    next(err);
-  }
-};
-
-
-// exports.deletePoll = async (req, res, next) => {
-//   const { id: pollId } = req.params;
-//   const { id: userId } = req.decoded;
-//   try {
-//     let user = await db.User.findById(userId)
-//     if(user.polls) { // not sure if necessary either...
-//       user.polls = user.polls.filter(userPoll => {
-//         return userPoll._id.toString() !== pollId.toString() // not sure if necessary to use toString()
-//       })
-//     }
-    
-//     const poll = await db.Poll.findById(pollId);
-//     if (!poll) throw new Error('No poll found');
-//     if (poll.user.toString() !== userId) {
-//       throw new Error('Unauthorized access');
-//     }
-//     await user.save()
-//     await poll.remove();
-//     return res.status(202).json({ poll, deleted: true });
-//   } catch (err) {
-//     return next({
-//       status: 400,
-//       message: err.message,
-//     });
-//   }
-// };
 
 
 exports.vote = async (req, res, next) =>{
@@ -122,7 +98,6 @@ exports.vote = async (req, res, next) =>{
     const {id: pollId} = req.params;
     const {id: userId} = req. decoded;
     const {answer} = req.body;
-
     if (answer){
       const poll = await db.Poll.findById(pollId);
       if(!poll) throw new Error('No Poll Found');
@@ -158,4 +133,3 @@ exports.vote = async (req, res, next) =>{
     next (err);
   }
 }
-

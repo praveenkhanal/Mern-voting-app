@@ -1,10 +1,10 @@
 .button {
   background-color: rgb(29, 141, 149);
-  border: 2px solid var(--blue);
+  border: 1px solid var(--blue);
   border-radius: 0.5rem;
   color:black;
   font-size: 1rem;
-  margin: 1rem;
+  margin-left: 1.2rem;
   padding: 0.2rem 1rem;
   transition: all 0.4s ease-out;
 }

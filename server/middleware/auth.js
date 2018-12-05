@@ -4,7 +4,7 @@ module.exports = (req, res, next) => {
     const token = req.headers['authorization'].split(' ')[1];
     jwt.verify(token, process.env.SECRET, (err, decoded) => {
       if (err) {
-        // res.json({
+        // res.json({ 
         //   success: false,
         //   message: 'Failed to authenticate token',
         // });

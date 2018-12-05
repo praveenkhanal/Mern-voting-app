@@ -1,5 +1,5 @@
 import api from '../../services/api';
-import { SET_POLLS, SET_CURRENT_POLL, DELETE_CURRENT_POLL } from '../actionTypes';
+import { SET_POLLS, SET_CURRENT_POLL, SET_DELETE_POLL } from '../actionTypes';
 import { addError, removeError } from './error';
 
 export const setPolls = polls => ({
@@ -12,15 +12,22 @@ export const setCurrentPoll = poll => ({
   poll,
 });
 
-export const deleteCurrentPoll = poll => ({
-  type: DELETE_CURRENT_POLL,
-  poll,
+export const deletePolls = pollId => ({
+  type: SET_DELETE_POLL,
+  pollId,
 });
 
+//.........below code is more effective.......
+// export const deletePoll= (id) => {
+//   return {
+//       type: actionTypes.REMOVE_POLL,
+//       id: id
+//   }
+// }
 export const getPolls = () => {
   return async dispatch => {
     try {
-      const polls = await api.call('get', 'polls');
+    const polls = await api.call('get', 'polls');
       dispatch(setPolls(polls));
       dispatch(removeError());
     } catch (err) {
@@ -34,6 +41,7 @@ export const getUserPolls = () => {
   return async dispatch => {
     try {
       const polls = await api.call('get', 'polls/user');
+      console.log('ACTION POLLS ', polls)
       dispatch(setPolls(polls));
       dispatch(removeError());
     } catch (err) {
@@ -47,6 +55,7 @@ export const createPoll = data => {
   return async dispatch => {
     try {
       const poll = await api.call('post', 'polls', data);
+      console.log('CREATE POLL ', poll)
       dispatch(setCurrentPoll(poll));
       dispatch(removeError());
     } catch (err) {
@@ -56,10 +65,27 @@ export const createPoll = data => {
   };
 };
 
+export const deletePollAPI = pollId => { 
+  return async dispatch => {
+    try { 
+      const poll = await api.call('delete', 'polls/' + pollId);
+      console.log('DELETE POLL ', poll);
+
+      dispatch(DeletePoll(pollId));
+      
+      dispatch(removeError());
+      } catch (err) {
+      const error = err.response.data;
+      dispatch(addError(error.message));
+  }
+};
+};
+
 export const getCurrentPoll = path => {
   return async dispatch => {
     try {
       const poll = await api.call('get', `polls/${path}`);
+      console.log(poll)
       dispatch(setCurrentPoll(poll));
       dispatch(removeError());
     } catch (err) {
@@ -81,11 +107,12 @@ export const vote =(path, data) => {
   };
 };
 
-export const deletePoll = data => { 
+
+export const DeletePoll = pollId => { 
    return async dispatch => {
       try { 
-        const poll = await api.call('delete', 'polls', data);
-        dispatch(deleteCurrentPoll(poll));
+        dispatch(deletePolls(pollId));
+        
         dispatch(removeError());
         } catch (err) {
         const error = err.response.data;
@@ -93,3 +120,6 @@ export const deletePoll = data => {
     }
   };
 };
+
+
+

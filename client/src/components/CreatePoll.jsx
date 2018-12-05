@@ -1,8 +1,11 @@
 import React, { Component, Fragment } from 'react';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { createPoll } from '../store/actions';
-// import {deleteCurrentPoll} from '../store/actions/polls'
+import { createPoll, getPolls } from '../store/actions';
+// import {deleteCurrentPoll} from '../store/reducers/polls'
+// import {deletePoll} from '../store/actions/polls'
+
 
 class CreatePoll extends Component {
   constructor(props){
@@ -16,7 +19,7 @@ class CreatePoll extends Component {
     this.addAnswer = this.addAnswer.bind(this);
     this.handleAnswer = this.handleAnswer.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    // this.deleteCurrentPoll = this.deleteCurrentPoll.bind(this);
+    // this.handleDelete = this.handleDelete.bind(this);
   }
 
   handleChange(e){
@@ -31,18 +34,20 @@ class CreatePoll extends Component {
     this.setState({ options });
   }
 
-  // deleteCurrentPoll(e){
+  // handleDelete(e){
   //   this.setState({[e.target.name]: e.target.value});
   // }
 
   handleSubmit(e) {
     e.preventDefault();
     this.props.createPoll(this.state);
+    this.props.history.push('/');
   }
 
   render () {
+    console.log(this.props)
     const options = this.state.options.map((options, i) => (
-    <Fragment>
+    <Fragment key={i}>
       <label className='form-label'>option</label>
       <input className='form-input' type='text' value={options} key={i} onChange={e => this.handleAnswer(e, i)} />
     </Fragment>
@@ -62,4 +67,4 @@ class CreatePoll extends Component {
 
 } 
 
-export default connect(() => ({}), { createPoll })(CreatePoll);
+export default withRouter(connect(() => ({}), { createPoll, getPolls })(CreatePoll));

@@ -1,9 +1,21 @@
-import { SET_POLLS, SET_CURRENT_POLL } from '../actionTypes';
+import { SET_POLLS, SET_CURRENT_POLL, SET_DELETE_POLL } from '../actionTypes';
 
 export const polls = (state = [], action) => {
   switch (action.type) {
     case SET_POLLS:
-    return action.polls;
+      const updatedState = [
+        ...action.polls
+      ];
+      return updatedState;
+    // case SET_CURRENT_POLL:
+      // const updatedPolls = {
+      //   // ...state,
+      //   ...action.poll
+      // };
+      // return action.polls;
+    case SET_DELETE_POLL:
+      const filteredState = state.filter((poll) =>poll._id !== action.pollId);
+      return filteredState;
   default:
     return state;
   }
@@ -17,3 +29,5 @@ export const currentPoll = (state = {}, action) => {
     return state;
   }
 };
+
+  

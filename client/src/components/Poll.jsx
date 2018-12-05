@@ -4,6 +4,7 @@ import { Pie } from 'react-chartjs-2';
 
 import { vote } from '../store/actions';
 import { color } from '../services/color';
+// import {deleteCurrentPoll} from '../store/actions/polls'
 
 const Poll = ({ poll, vote }) => {
   const answers = 
@@ -14,6 +15,7 @@ const Poll = ({ poll, vote }) => {
         key={option._id}>
         {option.option}
       </button>
+      
     ));
 
   const data = poll.options && {
