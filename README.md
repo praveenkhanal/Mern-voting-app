@@ -59,6 +59,8 @@ react-chartjs-2,
 
 Heroku for deplyoment
 
+## Extra features to implement 
+use social media API's to connect and share the polls.
 
 
 ## Available Scripts
