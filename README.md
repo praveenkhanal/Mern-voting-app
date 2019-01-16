@@ -1,8 +1,8 @@
 # Mern-voting-app
 
 Application live at:
-https://mern-voting-server.herokuapp.com/
-https://mern-voting-client.herokuapp.com/
+#server side: https://mern-voting-server.herokuapp.com/
+#Client side: https://mern-voting-client.herokuapp.com/
 
 ## The polling app allows users to create multiple-choice polls.
 
