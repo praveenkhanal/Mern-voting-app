@@ -61,6 +61,8 @@ Heroku for deplyoment
 
 ## Extra features to implement 
 use social media API's to connect and share the polls.
+Would like to push to heroku as a single application rather than currently deployed as client side and server side application.
+
 
 
 ## Available Scripts
